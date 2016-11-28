@@ -1,0 +1,45 @@
+---
+layout: index
+title: Git 合并
+---
+<h2>{{ page.title }}</h2>
+<p>{{ page.date | date_to_string }}</p>
+
+##去自己的工作分支
+	$ git checkout work
+
+##工作
+.	...
+
+##提交工作分支的修改
+	$ git commit -a
+
+回到主分支
+	$ git checkout master
+
+获取远程最新的修改，此时不会产生冲突
+	$ git pull
+
+回到工作分支
+	$ git checkout work
+
+用rebase合并主干的修改，如果有冲突在此时解决
+	$ git rebase master
+
+	>>> 在rebase的过程中，也许会出现冲突(conflict). 在这种情况，Git会停止rebase并会让你去解决 冲突；在解决完冲突后，用"git-add"命令去更新这些内容的索引(index), 然后，你无需执行 git-commit,只要执行:
+		$ git rebase --continue
+		这样git会继续应用(apply)余下的补丁。
+		在任何时候，你可以用--abort参数来终止rebase的行动，并且"mywork" 分支会回到rebase开始前的状态。
+		$ git rebase --abort
+
+回到主分支
+	$ git checkout master
+
+合并工作分支的修改，此时不会产生冲突。
+	$ git merge work
+
+提交到远程主干
+	$ git push
+
+##参考
+	http://www.ruanyifeng.com/blog/2012/07/git.html
